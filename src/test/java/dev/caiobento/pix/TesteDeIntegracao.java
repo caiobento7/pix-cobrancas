@@ -40,6 +40,7 @@ public abstract class TesteDeIntegracao {
 
 	@BeforeEach
 	void montarApi() {
+		relogio.reiniciar();
 		api = MockMvcBuilders.webAppContextSetup(contexto).build();
 	}
 

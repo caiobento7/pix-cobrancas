@@ -13,7 +13,14 @@ import org.springframework.context.annotation.Primary;
 /** Relógio que o teste adianta na mão, para simular o tempo passando. */
 public class RelogioDeTeste extends Clock {
 
-	private volatile Instant agora = Instant.parse("2026-11-06T12:00:00Z");
+	private static final Instant INICIO = Instant.parse("2026-11-06T12:00:00Z");
+
+	private volatile Instant agora = INICIO;
+
+	/** Os testes compartilham o mesmo contexto Spring; cada um começa com o relógio no mesmo ponto. */
+	public void reiniciar() {
+		agora = INICIO;
+	}
 
 	public void avancar(Duration tempo) {
 		agora = agora.plus(tempo);

@@ -10,6 +10,7 @@ jobs:
     name: Testes (${{ matrix.banco }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         banco: [h2, postgres]
     services:
